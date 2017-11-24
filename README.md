@@ -58,8 +58,8 @@ node app.js
 
 ```
 ■ 予定一覧
-http -vv https://outlook.office.com/api/v2.0/users/aska@denkeicojp.onmicrosoft.com/events Authorization:"Bearer $ACCESS_TOKEN"
+http -vv https://outlook.office.com/api/v2.0/users/USER_NAME@$TENANT_ID.onmicrosoft.com/events Authorization:"Bearer $ACCESS_TOKEN"
 
 ■ 会議室一覧
-http -vv https://outlook.office.com/api/beta/users/aska@denkeicojp.onmicrosoft.com/findrooms Authorization:"Bearer $ACCESS_ATOKEN"
+http -vv https://outlook.office.com/api/beta/users/USER_NAME@$TENANT_ID.onmicrosoft.com/findrooms Authorization:"Bearer $ACCESS_ATOKEN"
 ```
