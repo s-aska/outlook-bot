@@ -1,0 +1,2 @@
+export TENANT_ID='YOUR_DOMAIN.onmicrosoft.com'
+export APPLICATION_ID='YOUR_APPLICATION_ID'
