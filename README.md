@@ -13,8 +13,13 @@ Bot Frameworkから認証画面(No AuthBot)を出さずにOutlookの予定や会
 
 ## アプリケーションの登録
 
-### Azure Active Directory 管理センターを開く
-https://aad.portal.azure.com
+https://portal.azure.com or https://aad.portal.azure.com
+
+マルチテナントしたい場合は https://portal.azure.com から登録して自テナントで管理者による承諾フローを確認すると良い。
+
+承諾フローは管理者権限で下記URLをクリックし、承諾ボタンをクリックすれば良い。（localhostへのアクセスはエラーになるが権限は付与される）
+
+https://login.microsoftonline.com/common/oauth2/authorize?response_type=code&prompt=admin_consent&client_id=$APPLICATION_ID&resource=https%3a%2f%2foutlook.office.com%2f&redirect_uri=http%3A%2F%2Flocalhost
 
 ### アプリケーションの登録
 [Azure Active Directory] > [アプリの登録] > [＋新しいアプリケーションの登録]
