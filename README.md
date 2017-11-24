@@ -2,6 +2,15 @@
 
 Bot Frameworkから認証画面(No AuthBot)を出さずにOutlookの予定や会議室の空きをぶっこ抜きたいあなたへ
 
+## 参考情報
+
+- 参考1: https://tsmatz.wordpress.com/2015/04/09/azure-ad-backend-server-side-deamon-service/
+- 参考2: https://www.slideshare.net/AyakoUruno/bot-office-365-microsoft-bot-framework-microsoft-graph-api-ux
+
+参考2 では client_secret で取れるAccess Tokenが仕えるとありますが現在では証明書を利用した強いAccess Tokenが必要になっており、参考1を元にこれを作りました。
+
+どこを見ても makecert.exe で証明書を作るとあるのですがWindowsを購入しなくても openssl で作れるようにしています、ご安心下さい。
+
 ## アプリケーションの登録
 
 ### Azure Active Directory 管理センターを開く
@@ -42,10 +51,18 @@ export APPLICATION_ID='YOUR_APPLICATION_ID'
 ./makecert.sh
 ```
 
+国コードとか聞かれますがいつもの要領で適当に答えましょう。
+
 ## マニフェスト用の設定生成
 
 ```
 node settings.js
+```
+
+マニフェストの keyCredentials に突っ込む設定が出力されます。
+
+```
+"keyCredentials": [<ここにペースト>],
 ```
 
 ## 予定一覧取得
@@ -58,8 +75,8 @@ node app.js
 
 ```
 ■ 予定一覧
-http -vv https://outlook.office.com/api/v2.0/users/USER_NAME@$TENANT_ID.onmicrosoft.com/events Authorization:"Bearer $ACCESS_TOKEN"
+http -v https://outlook.office.com/api/v2.0/users/USER_NAME@$TENANT_ID.onmicrosoft.com/events Authorization:"Bearer $ACCESS_TOKEN"
 
 ■ 会議室一覧
-http -vv https://outlook.office.com/api/beta/users/USER_NAME@$TENANT_ID.onmicrosoft.com/findrooms Authorization:"Bearer $ACCESS_ATOKEN"
+http -v https://outlook.office.com/api/beta/users/USER_NAME@$TENANT_ID.onmicrosoft.com/findrooms Authorization:"Bearer $ACCESS_ATOKEN"
 ```
